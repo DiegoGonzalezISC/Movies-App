@@ -10,8 +10,8 @@ class MoviesRepositoryImpl@Inject constructor(private val api: MoviesService): M
         return response.movieDTOS
     }
 
-    override suspend fun getMovies(): List<MovieDTO> {
-        val response = api.getMovies()
+    override suspend fun getMovies(page: Int): List<MovieDTO> {
+        val response = api.getMovies(page)
         return response.movieDTOS
     }
 }
