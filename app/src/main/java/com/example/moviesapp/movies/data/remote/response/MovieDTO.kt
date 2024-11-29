@@ -2,6 +2,7 @@ package com.example.moviesapp.movies.data.remote.response
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.UUID
 
 data class MovieDTO(
     @SerializedName("adult")
@@ -31,5 +32,7 @@ data class MovieDTO(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    // Added uniqueId to avoid issues with the key when loading the LazyGridColumn
+    val uniqueId: String = UUID.randomUUID().toString()
 )

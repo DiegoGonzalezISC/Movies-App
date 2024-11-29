@@ -5,9 +5,9 @@ import com.example.moviesapp.movies.domain.repository.MoviesRepository
 import javax.inject.Inject
 
 class GetMoviesUseCase @Inject constructor(private val repository: MoviesRepository) {
-    suspend operator fun invoke(): List<MovieDTO> {
+    suspend operator fun invoke(page: Int): List<MovieDTO> {
         return try {
-            repository.getMovies()
+            repository.getMovies(page)
         } catch (e: Exception) {
             emptyList()
         }

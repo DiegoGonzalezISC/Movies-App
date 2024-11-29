@@ -30,8 +30,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val moviesState by moviesViewModel.moviesState.collectAsState()
             MoviesAppTheme {
-                val nowPlayingMoviesState by moviesViewModel.moviesState.collectAsState()
                 Scaffold(
                     topBar = {
                         MoviesTopAppBar()
@@ -39,7 +39,9 @@ class MainActivity : ComponentActivity() {
                     bottomBar = { MoviesBottomBar() },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    MoviesScreen(nowPlayingMoviesState, modifier = Modifier.padding(innerPadding))
+                    MoviesScreen(moviesState, modifier = Modifier.padding(innerPadding)){
+                        moviesViewModel.getMovies()
+                    }
                 }
             }
         }
